@@ -5,7 +5,7 @@ import { hooks } from './hooks'
 
 async function run(): Promise<void> {
   try {
-    const hook_c_dir = core.getInput('inPath')
+    const hook_c_dir = process.env.IN_PATH || ''
     if (!fs.existsSync(hook_c_dir)) {
       throw new Error('inPath does not exist')
     }

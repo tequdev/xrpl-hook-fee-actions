@@ -29,4 +29,6 @@ runs:
       shell: bash
       run: |
         node dist/index.js
+      env:
+        IN_PATH: ${{ inputs.inPath }}
 
