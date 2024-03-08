@@ -29,13 +29,15 @@ async function run(): Promise<void> {
       core.info(`HookHash: ${result.hookHash}`)
       outputs.push([wasmFile, result.deployFee, result.executionFee, result.callbackFee || '-', result.hookHash])
     }
-    core.summary
+    const summary = core.summary
       .addHeading("Hook Info")
       .addTable([
         [{ data: 'File', header: true }, { data: 'Deploy Fee', header: true }, { data: 'Execution Fee', header: true }, { data: 'Callback Fee', header: true }, { data: 'HookHash', header: true }],
         ...outputs.map((output) => [output[0], output[1], output[2], output[3], output[4]]),
       ])
-      .write()
+    console.log(summary.stringify())
+    core.setOutput('summary', summary.stringify())
+    summary.write()
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
