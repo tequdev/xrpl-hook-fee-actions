@@ -25,7 +25,7 @@ async function run(): Promise<void> {
       core.info(`File: ${wasmFile}`)
       core.info(`Deploy Fee: ${result.deployFee}`)
       core.info(`Execution Fee: ${result.executionFee}`)
-      core.info(`Callback Fee: ${result.callbackFee}`)
+      core.info(`Callback Fee: ${result.callbackFee || '-'}`)
       core.info(`HookHash: ${result.hookHash}`)
       outputs.push([wasmFile, result.deployFee, result.executionFee, result.callbackFee || '-', result.hookHash])
     }
