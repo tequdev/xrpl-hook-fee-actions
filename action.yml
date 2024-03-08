@@ -1,0 +1,17 @@
+name: 'XRPL Hooks Analyzer'
+description: 'Analyze XRPL hook deploy fee, execution fee'
+inputs:
+  inPath:
+    description: 'directory of c files'
+    required: true
+runs:
+  using: 'docker'
+  image: 'docker://python:3.9'
+  args:
+    - bash
+    - -c
+    - |
+      apt-get update && apt-get install -y nodejs npm
+      pip install xrpld-netgen
+      npm run xrpld:start
+      node dist/index.js
