@@ -28,8 +28,9 @@ runs:
       id: analyzer_step
       shell: bash
       run: |
-        node dist/index.js
+        node $GITHUB_ACTION_PATH/dist/index.js
       env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
         IN_PATH: ${{ inputs.inPath }}
         
     - name: Pull Request Comment
